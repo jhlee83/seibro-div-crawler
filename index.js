@@ -49,8 +49,8 @@ const run = async () => {
 
     for (let pg_index = 1; pg_index <= 2; pg_index++) {
       // await page.click(`#cntsPaging01_page_${pg_index}`, {waitUntil: 'domcontentloaded'});
-      await page.click(`#cntsPaging01_page_${pg_index}`, {delay: 3000})        
-      page.waitForTimeout(3000)
+      await page.click(`#cntsPaging01_page_${pg_index}`)        
+      await page.waitForTimeout(3000)
       await page.waitForSelector(pageload_selector);
       data.push(await getPageData(page));
       console.log(data);
