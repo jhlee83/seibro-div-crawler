@@ -45,17 +45,17 @@ const run = async () => {
     // grabbing team data
     const pageload_selector = "#grid1_cell_0_0 > nobr";
     await page.waitForSelector(pageload_selector);
-    await page.waitFor(5000);
     let data = [];
 
     for (let pg_index = 1; pg_index <= 2; pg_index++) {
-      await page.click(`#cntsPaging01_page_${pg_index}`);
-
+      // await page.click(`#cntsPaging01_page_${pg_index}`, {waitUntil: 'domcontentloaded'});
+      await page.click(`#cntsPaging01_page_${pg_index}`, {delay: 3000})        
+      page.waitForTimeout(3000)
       await page.waitForSelector(pageload_selector);
       data.push(await getPageData(page));
-      await page.waitForNavigation();
+      console.log(data);
     }
-    console.log(data);
+    
 
     await browser.close();
   } catch (e) {
